@@ -6,8 +6,6 @@ Web application used to manage your expenses and incomes, splitting them by cate
 
 ## Stack
 
----
-
 Laravel as the backend framework of the project.  
 VueJS as the frontend framework of the project.  
 Inertia as the glue to manage server to client communication.  
