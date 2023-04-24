@@ -30,7 +30,7 @@ export default {
         <div class="mt-4 flex flex-col gap-2 justify-center items-center">
             <p class="text-gray-200 font-bold">
                 {{ this.category.type == "expense" ? "Gastos" : "Receitas" }}
-                totais:
+                totais no mês:
             </p>
             <span
                 :class="`${
@@ -47,7 +47,10 @@ export default {
                 ({{ this.category.type == "expense" ? "Despesa" : "Receita" }})
             </span>
         </h2>
-        <ul class="grid gap-3 max-h-4/5-screen overflow-auto px-2 md:px-0">
+        <ul
+            class="grid gap-3 max-h-4/5-screen overflow-auto px-2 md:px-0"
+            v-if="this.category.transactions.length > 0"
+        >
             <TransactionInfo
                 :id="transaction.id"
                 :title="transaction.title"
@@ -61,5 +64,13 @@ export default {
                 v-for="transaction in this.category.transactions"
             />
         </ul>
+        <div
+            v-if="this.category.transactions.length == 0"
+            class="text-amber-400 font-bold text-center text-xl h-50vh grid place-items-center"
+        >
+            Sem
+            {{ this.category.type == "expense" ? "despesas" : "receitas" }} de
+            {{ category.title }} nesse mês.
+        </div>
     </Layout>
 </template>

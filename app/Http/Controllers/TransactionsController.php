@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Models\Transaction;
@@ -12,14 +12,17 @@ class TransactionsController extends Controller
 {
     // Web endpoints
 
-    public function index(){
+    public function index(Request $request){
+        $month = $request->session()->get('month') ?? date("m");
+
         $transactions = Transaction::with('category')
         ->where('user_id', auth()->user()->id)
-        ->whereMonth('date', date('m'))
+        ->whereMonth('date', $month)
         ->whereYear('date', date('Y'))
         ->get();
+
         $categories = Category::where('user_id', auth()->user()->id)->get();
-        return Inertia::render('Transactions',compact('transactions', 'categories'));
+        return Inertia::render('Transactions',compact('transactions', 'categories', 'month'));
     }
     
     public function show($id){

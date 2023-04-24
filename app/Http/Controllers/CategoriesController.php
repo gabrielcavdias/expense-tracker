@@ -10,9 +10,10 @@ use Inertia\Inertia;
 class CategoriesController extends Controller
 {
     //
-    public function index(){
+    public function index(Request $request){
         $categories = Category::where('user_id', auth()->user()->id)->get();
-        return Inertia::render('Categories', compact('categories'));
+        $month = $request->session()->get('month') ?? date("m");
+        return Inertia::render('Categories', compact('categories', 'month'));
     }
 
     public function store(StoreCategoryRequest $request){
@@ -26,9 +27,15 @@ class CategoriesController extends Controller
         }
     }
 
-    public function transactions_by_id($id){
-        $category = Category::where('id', $id)->with('transactions')->first();
+    public function transactions_by_id(Request $request, $id){
+        $month = $request->session()->get('month') ?? date("m");
+        $category = Category::where('id', $id)
+        ->with('transactions', function ($query) use($month){
+            $query->whereMonth('date', $month);
+        })
+        ->first();
+        
         if(!$category) return to_route('home');
-        return Inertia::render('Category', compact('category'));
+        return Inertia::render('Category', compact('category', 'month'));
     }
 }

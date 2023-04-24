@@ -86,7 +86,7 @@ export default {
                 v-if="this.transactions.length == 0"
                 class="text-amber-400 font-bold text-center text-xl h-50vh grid place-items-center"
             >
-                Nenhuma transação cadastrada, adicione sua primeira clicando no
+                Nenhuma transação nesse mês, adicione sua primeira clicando no
                 botão acima!
             </div>
         </div>

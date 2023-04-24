@@ -18,16 +18,25 @@ use App\Http\Controllers\SessionController;
 */
 
 Route::middleware('auth')->group(function(){
+    
     Route::get('/', [TransactionsController::class, 'index'])->name('home');
     Route::get('/transaction/{id}', [TransactionsController::class, 'show'])->name('show');
     Route::post('/transaction/store', [TransactionsController::class, 'store'])->name('store');
     Route::delete('/transaction/{id}', [TransactionsController::class, 'destroy'])->name('destroy');
+
     Route::get('/categories', [CategoriesController::class, 'index'])->name('categories');
     Route::prefix('category')->as('category.')->group(function(){
         Route::get('/{id}', [CategoriesController::class, 'transactions_by_id'])->name('show');
         Route::post('/store', [CategoriesController::class, 'store'])->name('store');
     });
+
+    Route::prefix('config')->as('config.')->group(function(){
+        Route::post('/date', [SessionController::class, 'date'])->name("date");
+    });
+    
 });
+
+
 Route::middleware('guest')->prefix('login')->as('login.')->group(function(){
     Route::get('/', [SessionController::class, 'create'])->name('create');
     Route::post('/', [SessionController::class, 'store'])->name('store');

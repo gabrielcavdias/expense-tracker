@@ -1,28 +1,14 @@
 <script>
 import { router, Link, Head } from "@inertiajs/vue3";
+import DateSelector from "../components/DateSelector.vue";
 
 export default {
-    data() {
-        return {
-            months: [
-                "Janeiro",
-                "Fevereiro",
-                "Março",
-                "Abril",
-                "Maio",
-                "Junho",
-                "Julho",
-                "Agosto",
-                "Setembro",
-                "Outubro",
-                "Novembro",
-                "Dezembro",
-            ],
-        };
-    },
     methods: {
         logout() {
             router.delete("/logout");
+        },
+        changeDate(date) {
+            router.post("/config/date", { month: date.month });
         },
     },
     computed: {
@@ -33,17 +19,17 @@ export default {
     components: {
         Link,
         Head,
+        DateSelector,
     },
 };
 </script>
 <template>
-    <header class="mt-5 flex justify-between items-start px-2 md:px-0">
+    <header class="mt-5 flex justify-between items-start px-2 md:px-0 relative">
         <Link href="/" class="text-amber-400 text-xl hover:text-amber-300">
             <i class="fa-solid fa-house"></i>
         </Link>
         <h1 class="text-gray-200 text-xl mb-4 flex gap-2">
-            {{ months[new Date().getMonth()] }}
-            <button><i class="fa fa-chevron-down text-sm"></i></button>
+            <DateSelector @changeDate="changeDate" />
         </h1>
         <button
             class="text-amber-400 text-xl hover:text-amber-300 transition-all duration-300"

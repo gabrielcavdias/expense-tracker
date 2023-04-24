@@ -13,7 +13,7 @@ export default {
             }).format(value);
         },
         getDate() {
-            let date = new Date(this.transaction.created_at);
+            let date = new Date(this.transaction.date);
             let day = date.getDate();
             let month =
                 date.getMonth() + 1 < 10
