@@ -7,7 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCategoryRequest extends FormRequest
 {
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -17,7 +16,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             "title" => ["required", "max:30", Rule::unique('categories', 'title')
-            ->where(fn($query) => $query->where('user_id', auth()->user()->id))],
+            ->where(fn ($query) => $query->where('user_id', auth()->user()->id))],
             "type" => Rule::in(['expense', 'income']),
             "color" => "required",
             "icon" => "required",
@@ -29,8 +28,10 @@ class StoreCategoryRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function messages(){
+    public function messages()
+    {
         return [
+            "title.unique" => "Use um nome único para cada categoria",
             "type.in" => "O campo tipo deve ser receita ou despesa",
         ];
     }

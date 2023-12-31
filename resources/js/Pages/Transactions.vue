@@ -1,10 +1,10 @@
 <script>
-import TransactionInfo from "../components/TransactionInfo.vue";
-import TransactionSummary from "../components/TransactionSummary.vue";
-import Modal from "../components/Modal.vue";
-import TransactionForm from "../components/TransactionForm.vue";
-import Layout from "../layout/Layout.vue";
-import { Head } from "@inertiajs/vue3";
+import TransactionInfo from '../components/TransactionInfo.vue'
+import TransactionSummary from '../components/TransactionSummary.vue'
+import Modal from '../components/Modal.vue'
+import TransactionForm from '../components/TransactionForm.vue'
+import Layout from '../layout/Layout.vue'
+import { Head } from '@inertiajs/vue3'
 export default {
     props: {
         transactions: Object,
@@ -13,25 +13,25 @@ export default {
     data() {
         return {
             isModalOpen: false,
-        };
+        }
     },
     methods: {
         closeModal() {
-            this.isModalOpen = false;
+            this.isModalOpen = false
         },
     },
     computed: {
         incomes() {
             return this.transactions
-                .filter((transaction) => transaction.type == "income")
+                .filter((transaction) => transaction.type == 'income')
                 .map((transaction) => transaction.value)
-                .reduce((prev, cur) => prev + cur, 0);
+                .reduce((prev, cur) => prev + cur, 0)
         },
         expenses() {
             return this.transactions
-                .filter((transaction) => transaction.type == "expense")
+                .filter((transaction) => transaction.type == 'expense')
                 .map((transaction) => transaction.value)
-                .reduce((prev, cur) => prev + cur, 0);
+                .reduce((prev, cur) => prev + cur, 0)
         },
     },
     components: {
@@ -42,7 +42,7 @@ export default {
         Head,
         Layout,
     },
-};
+}
 </script>
 <template>
     <Head title="Suas transações" />
@@ -66,7 +66,7 @@ export default {
                 </button>
             </div>
             <ul
-                class="grid gap-3 max-h-4/5-screen overflow-auto px-2 md:px-0"
+                class="grid gap-3 overflow-auto mb-[120px] px-2 md md:px-0"
                 v-if="this.transactions.length > 0"
             >
                 <TransactionInfo

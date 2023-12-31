@@ -13,7 +13,7 @@ export default {
 </script>
 <template>
     <nav
-        class="fixed bottom-0 md:bottom-auto md:top-0 md:max-w-2xl w-full grid grid-cols-3 md:flex md:gap-6 md:mt-2 bg-gray-900 md:bg-transparent border-t md:border-t-0 border-opacity-5"
+        class="fixed md:absolute bottom-0 md:bottom-auto md:top-0 md:max-w-2xl w-full grid grid-cols-3 md:flex md:gap-6 md:mt-2 bg-gray-900 md:bg-transparent border-t md:border-t-0 border-opacity-5"
     >
         <Link
             href="/"

@@ -28,3 +28,16 @@ Tailwind as the way to write CSS more quickly
 <img src="https://raw.githubusercontent.com/tailwindlabs/tailwindcss/HEAD/.github/logo-dark.svg" width="200" alt="TailwindCSS logo">
 </a>
 </p>
+
+## Todo:
+
+-   Edit/Update Transaction
+-   Edit/Update Category
+
+-   Add visual feedback to request rules errors
+-   Add authentication features: Confirm_Email, Forgot Password, Change password.
+-   Add account features: Delete account, profile photo
+
+### Maybe:
+
+-   Add social login feature

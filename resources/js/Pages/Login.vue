@@ -1,5 +1,5 @@
 <script>
-import { Head, router, Link } from "@inertiajs/vue3";
+import { Head, router, Link } from '@inertiajs/vue3'
 
 export default {
     props: {
@@ -11,18 +11,18 @@ export default {
     },
     methods: {
         login() {
-            router.post("/login", this.form);
+            router.post('/login', this.form)
         },
     },
     data() {
         return {
             form: {
-                email: "",
-                password: "",
+                email: '',
+                password: '',
             },
-        };
+        }
     },
-};
+}
 </script>
 <template>
     <div class="grid h-screen place-items-center px-2 md:px-0">
@@ -60,6 +60,11 @@ export default {
                     v-model="form.password"
                     class="w-full p-3 rounded border-b-2 border-amber-600 focus:outline-none"
                 />
+                <Link
+                    href="/forgot-password"
+                    class="block mt-3 text-amber-700 underline"
+                    >Esqueci minha senha</Link
+                >
                 <div class="mt-2 flex justify-center items-center">
                     <button
                         class="bg-amber-500 hover:bg-amber-400 transition-all duration-300 text-white px-6 py-3 rounded-xl md:rounded-md"
